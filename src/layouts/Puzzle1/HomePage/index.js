@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 
 import Home from "../../../components/Puzzle1/Home"
 
-export default function P1HomePage() {
+export default function P1HomePage({updateLocalProgress}) {
   const [code, setCode] = useState("")
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function P1HomePage() {
     console.log(code)
     if (data.guess === code) {
       alert("Correct")
+      updateLocalProgress({level: 1})
     } else {
       alert("Incorrect code")
     }
