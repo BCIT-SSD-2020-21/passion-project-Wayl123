@@ -1,1 +1,5 @@
-### Project readme
+### Project
+## Technology
+- React
+- Express
+- Mongo
