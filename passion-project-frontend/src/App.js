@@ -7,6 +7,7 @@ import {
 } from "react-router-dom"
 
 import WelcomePage from "./layouts/WelcomePage"
+import EndPage from "./layouts/EndPage"
 import P1HomePage from "./layouts/Puzzle1/HomePage"
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
       <Switch>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />
+        </Route>
+        <Route path="/end">
+          <EndPage />
         </Route>
         <Route path="/">
           <WelcomePage />
