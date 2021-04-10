@@ -17,12 +17,10 @@ export default function P1HomePage({updateLocalProgress}) {
   }
 
   const checkAnswer = (data) => {
-    console.log(data.guess)
-    console.log(code)
     if (data.guess === code) {
       alert("Correct")
       updateLocalProgress({level: 1})
-      history.push(`/end`)
+      history.push(`/puzzle2`)
     } else {
       alert("Incorrect code")
     }

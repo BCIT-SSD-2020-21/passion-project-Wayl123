@@ -1,5 +1,7 @@
 import React from "react"
 
+import styles from "./index.module.css"
+
 export default function Home({checkAnswer, code}) {
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,7 +17,7 @@ export default function Home({checkAnswer, code}) {
       <form onSubmit={handleSubmit}>
         <input name="guess" type="text" placeholder="Enter Code and Press Enter" />
       </form>
-      <p style={{color: '#FFFFFF'}}>{code}</p>
+      <p className={styles.code}>{code}</p>
     </div>
   )
 }
