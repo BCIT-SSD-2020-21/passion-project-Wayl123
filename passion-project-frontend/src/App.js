@@ -32,7 +32,7 @@ function App() {
   const updateLocalProgress = (data) => {
     let newProgress = progress
     newProgress.splice(data.level-1, 1, true)
-    setProgress(newProgress)
+    setProgress([...newProgress])
     console.log(newProgress)
   }
 

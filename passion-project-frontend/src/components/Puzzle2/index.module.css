@@ -12,3 +12,32 @@
 .unlock {
   background-color: #23cc31;
 }
+
+.transition {
+  transition: all 1s linear;
+}
+
+.dayBg {
+  background-color: #ffffff;
+}
+
+.nightBg {
+  background-color: #000000;
+}
+
+.dayText {
+  color: #000000;
+}
+
+.nightText {
+  color: #ffffff;
+}
+
+.inlineText {
+  display: inline;
+}
+
+.textButton {
+  background: none;
+  border: none;
+}

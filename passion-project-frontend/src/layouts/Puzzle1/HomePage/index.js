@@ -5,7 +5,6 @@ import Home from "../../../components/Puzzle1/Home"
 
 export default function P1HomePage({updateLocalProgress}) {
   const [code, setCode] = useState("")
-
   const history = useHistory()
 
   useEffect(() => {
