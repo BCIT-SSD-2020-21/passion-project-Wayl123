@@ -8,8 +8,8 @@ export default function P1HomePage({updateLocalProgress}) {
   const [trigger, setTrigger] = useState([false, false, false])
   const history = useHistory()
 
-  const checkUnlock = () => {
-    console.log(trigger)
+  const unlockClicked = () => {
+    history.push('/end')
   }
 
   const triggerClicked = (data) => {
@@ -23,7 +23,7 @@ export default function P1HomePage({updateLocalProgress}) {
     <div>
       <Home 
         trigger={trigger}
-        checkUnlock={checkUnlock}
+        unlockClicked={unlockClicked}
       />
       <DayNight 
         triggerClicked={triggerClicked}
