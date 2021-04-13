@@ -13,8 +13,51 @@
   background-color: #23cc31;
 }
 
+.chatContainer {
+  margin: 1rem;
+}
+
 .transition {
   transition: all 1s linear;
+}
+
+.animationFadeNight {
+  animation: fadeNight 1s linear;
+}
+
+@keyframes fadeNight {
+  0% {
+    color: #000000;
+  }
+  100% {
+    color: #ffffff;
+  }
+}
+
+.animationFadeDay {
+  animation: fadeDay 1s linear;
+}
+
+@keyframes fadeDay {
+  0% {
+    color: #ffffff;
+  }
+  100% {
+    color: #000000;
+  }
+}
+
+.animationFadeIn {
+  animation: fadeIn 1s linear;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .dayBg {
@@ -40,4 +83,25 @@
 .textButton {
   background: none;
   border: none;
+  outline: 0;
 }
+
+.rightSide {
+  float: right;
+}
+
+.topCenter {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+}
+
+.leftSide {
+  position: absolute;
+  margin-top: 9.5rem;
+}
+
+.disappear {
+  display: none;
+}
+
