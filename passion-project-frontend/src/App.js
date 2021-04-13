@@ -9,6 +9,7 @@ import {
 import WelcomePage from "./layouts/WelcomePage"
 import EndPage from "./layouts/EndPage"
 import P1HomePage from "./layouts/Puzzle1/HomePage"
+import P2HomePage from "./layouts/Puzzle2/HomePage"
 
 function App() {
   const [progress, setProgress] = useState([])
@@ -31,7 +32,7 @@ function App() {
   const updateLocalProgress = (data) => {
     let newProgress = progress
     newProgress.splice(data.level-1, 1, true)
-    setProgress(newProgress)
+    setProgress([...newProgress])
     console.log(newProgress)
   }
 
@@ -40,6 +41,9 @@ function App() {
       <Switch>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />
+        </Route>
+        <Route path="/puzzle2">
+          <P2HomePage updateLocalProgress={updateLocalProgress} />
         </Route>
         <Route path="/end">
           <EndPage />
