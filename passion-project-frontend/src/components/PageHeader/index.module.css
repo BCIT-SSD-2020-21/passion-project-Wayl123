@@ -1,0 +1,16 @@
+.appbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000000;
+}
+
+.rightContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.textButton {
+  background: none;
+  border: none;
+  outline: 0;
+}

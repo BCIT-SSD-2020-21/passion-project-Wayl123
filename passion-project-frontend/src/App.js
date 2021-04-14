@@ -24,6 +24,12 @@ function App() {
   const numOfLevel = 1
 
   useEffect(() => {
+    const user = token ? jwtDecode(token) : null
+    setUser(user)
+    console.log(user)
+  }, [token])
+
+  useEffect(() => {
     setDefaultProgress()
   }, [])
 

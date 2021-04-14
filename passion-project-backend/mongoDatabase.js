@@ -10,16 +10,15 @@ module.exports = async function() {
 
   const users = db.collection('users')
 
-  async function createUser({email, username, password}) {
+  async function createUser({username, password}) {
     const encrypted = await bcrypt.hash(password, 12)
     const user = await users.findOne({
-      $or: [{ username }, { email }]
+      $or: [{ username }]
     })
     if (user) {
-      throw Error("username or email already taken")
+      throw Error("username already taken")
     }
     const result = await users.insertOne({
-      email,
       username,
       password: encrypted,
       timestamp: Date.now()

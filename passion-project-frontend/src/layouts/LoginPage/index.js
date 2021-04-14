@@ -20,6 +20,8 @@ export default function PostDetailsPage({setToken}) {
       }
       if(result) {
         history.push("/")
+      } else {
+        alert("Error logging in/registering")
       }
     } else {
       console.log("Invalid type")
