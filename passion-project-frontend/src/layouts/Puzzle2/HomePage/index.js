@@ -26,8 +26,8 @@ export default function P1HomePage({updateLocalProgress}) {
         unlockClicked={unlockClicked}
       />
       <DayNight 
-        triggerClicked={triggerClicked}
         trigger={trigger}
+        triggerClicked={triggerClicked}
       />
     </div>
   )

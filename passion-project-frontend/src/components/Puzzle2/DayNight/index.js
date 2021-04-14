@@ -4,7 +4,7 @@ import styles from "../index.module.css"
 import Chat1 from "./chat1"
 import Chat2 from "./chat2"
 
-export default function DayNight({triggerClicked, trigger}) {
+export default function DayNight({trigger, triggerClicked}) {
   const [time, setTime] = useState(true)
   const [switchCount, setSwitchCount] = useState(0)
   const styleBg = `${styles.transition} ${time ? styles.dayBg : styles.nightBg}`
