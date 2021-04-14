@@ -21,7 +21,7 @@ module.exports = function({database, generateToken}) {
     try {
       const user = await database.getUser(req.body)
       const accessToken = generateToken({_id: user._id, email: user.email, username: user.username})
-      res.send({ accessToken: accessToken })
+      res.send({accessToken: accessToken})
     } catch (error) {
       console.log(error)
       res.status(401).send({error: error.message})

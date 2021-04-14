@@ -6,10 +6,16 @@ import {
   Redirect
 } from "react-router-dom"
 
+import jwtDecode from "jwt-decode"
+import useLocalStorage from "react-use-localstorage"
+
+import HeaderNavigation from "./layouts/HeaderNavigation"
 import WelcomePage from "./layouts/WelcomePage"
 import P1HomePage from "./layouts/Puzzle1/HomePage"
 
 function App() {
+  const [token, setToken] = useLocalStorage("token")
+  const [user, setUser] = useState()
   const [progress, setProgress] = useState([])
 
   const numOfLevel = 1
@@ -36,6 +42,7 @@ function App() {
 
   return (
     <Router>
+      <HeaderNavigation setToken={setToken} user={user} />
       <Switch>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />
