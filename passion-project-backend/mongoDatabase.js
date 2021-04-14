@@ -5,23 +5,47 @@ const url = require('./secrets')
 const client = new MongoClient(url.mongoUrl, {useUnifiedTopology: true, useNewUrlParser: true})
 
 module.exports = async function() {
-  try {
-    await client.connect()
+  await client.connect()
+  const db = client.db()
 
-    console.log(client.isConnected())
+  const users = db.collection('users')
 
-} catch (e) {
-    console.error(e);
-} finally {
-    await client.close();
-}
-  // await client.connect()
+  async function createUser({email, username, password}) {
+    const encrypted = await bcrypt.hash(password, 12)
+    const user = await users.findOne({
+      $or: [{ username }, { email }]
+    })
+    if (user) {
+      throw Error("username or email already taken")
+    }
+    const result = await users.insertOne({
+      email,
+      username,
+      password: encrypted,
+      timestamp: Date.now()
+    })
 
-  // const db = client.db()
+    return result.ops[0]
+  }
 
-  // const users = db.collection('users')
+  async function getUser({username, password}) {
+    const user = await users.findOne({
+      username: username
+    })
+    if (!user) {
+      throw Error("Invalid username")
+    }
 
-  // await listDatabases(client)
+    const same = await bcrypt.compare(password, user.password)
+    if (!same) {
+      throw Error("Passwords don't match")
+    }
 
-  // await client.close()
+    return user
+  }
+
+  return {
+    createUser,
+    getUser
+  }
 }
