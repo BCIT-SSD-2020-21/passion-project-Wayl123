@@ -10,6 +10,7 @@ import jwtDecode from "jwt-decode"
 import useLocalStorage from "react-use-localstorage"
 
 import HeaderNavigation from "./layouts/HeaderNavigation"
+import LoginPage from "./layouts/LoginPage"
 import WelcomePage from "./layouts/WelcomePage"
 import EndPage from "./layouts/EndPage"
 import P1HomePage from "./layouts/Puzzle1/HomePage"
@@ -46,6 +47,9 @@ function App() {
     <Router>
       <HeaderNavigation setToken={setToken} user={user} />
       <Switch>
+        <Route path="/login">
+          <LoginPage setToken={setToken} />
+        </Route>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />
         </Route>

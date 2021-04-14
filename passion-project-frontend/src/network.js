@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 //POST /api/users
 export async function createUser({sendData, setToken}) {
   try {
@@ -5,8 +7,10 @@ export async function createUser({sendData, setToken}) {
       ...sendData
     })
     setToken(result.data.accessToken)
+    return true
   } catch (error) {
     console.log(error)
+    return false
   }
 }
 
@@ -17,7 +21,9 @@ export async function loginUser({sendData, setToken}) {
       ...sendData
     })
     setToken(result.data.accessToken)
+    return true
   } catch (error) {
     console.log(error)
+    return false
   }
 }
