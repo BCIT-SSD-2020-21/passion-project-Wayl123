@@ -52,7 +52,7 @@ function App() {
 
   const setDefaultProgress = () => {
     let newProgress = []
-    for(var i=progress.length; i<numOfLevel; i++) {
+    for(var i=0; i<numOfLevel; i++) {
       newProgress.push(false)
     }
     setProgress(newProgress)

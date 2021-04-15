@@ -12,3 +12,10 @@
 .finish {
   background-color: #23cc31;
 }
+
+.textButton {
+  display: block;
+  background: none;
+  border: none;
+  outline: 0;
+}
