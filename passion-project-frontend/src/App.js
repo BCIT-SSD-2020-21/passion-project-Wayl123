@@ -26,9 +26,9 @@ function App() {
   const numOfLevel = 2
 
   useEffect(() => {
-    const user = token ? jwtDecode(token) : null
-    setUser(user)
-    console.log(user)
+    const tokenUser = token ? jwtDecode(token) : null
+    setUser(tokenUser)
+    console.log(tokenUser)
   }, [token])
 
   useEffect(() => {
@@ -36,10 +36,13 @@ function App() {
   }, [])
 
   useEffect(async() => {
-    const userProgress = user ? await updateDefaultUserProgress() : null
-    console.log(userProgress)
-    // setProgress(userProgress)
-  }, [user])
+    if(user && token) {
+      const userProgress = await setDefaultUserProgress()
+      if(userProgress) {
+        setProgress(userProgress)
+      }
+    }
+  }, [user && token])
 
   const setDefaultProgress = () => {
     let newProgress = []
@@ -47,12 +50,10 @@ function App() {
       newProgress.push(false)
     }
     setProgress(newProgress)
-    console.log(newProgress)
   }
 
-  const updateDefaultUserProgress = async() => {
+  const setDefaultUserProgress = async() => {
     const result = await getProgress({user})
-    console.log(result)
     return(result)
   }
 

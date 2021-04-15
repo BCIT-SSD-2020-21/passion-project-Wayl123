@@ -13,6 +13,7 @@ module.exports = function({database, authorize}) {
   //POST /api/progress
   router.post("/:userId", authorize, async (req, res) => {
     const userId = req.params.userId
+    console.log(req.body)
     const progress = await database.createProgress({newProgress: req.body, userId: userId})
     res.send({progress})
   })
