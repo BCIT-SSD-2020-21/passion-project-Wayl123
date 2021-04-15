@@ -13,6 +13,7 @@ import {getProgress, updateProgress} from "./network"
 
 import HeaderNavigation from "./layouts/HeaderNavigation"
 import LoginPage from "./layouts/LoginPage"
+import ProfilePage from "./layouts/ProfilePage"
 import WelcomePage from "./layouts/WelcomePage"
 import EndPage from "./layouts/EndPage"
 import P1HomePage from "./layouts/Puzzle1/HomePage"
@@ -36,7 +37,7 @@ function App() {
   }, [])
 
   useEffect(async() => {
-    if(user && token) {
+    if(user) {
       console.log(token)
       const userProgress = await setDefaultUserProgress()
       if(userProgress) {
@@ -47,7 +48,7 @@ function App() {
         console.log(`Set to local progress: ${progress}`)
       }
     }
-  }, [user, token])
+  }, [user])
 
   const setDefaultProgress = () => {
     let newProgress = []
@@ -79,6 +80,9 @@ function App() {
       <Switch>
         <Route path="/login">
           <LoginPage setToken={setToken} />
+        </Route>
+        <Route path="/profile">
+          <ProfilePage user={user} progress={progress} />
         </Route>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />

@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-// const token = localStorage.getItem('token')
-// const authHeader = {Authorization: `Bearer ${token}`}
-
 //POST /api/users
 export async function createUser({sendData, setToken}) {
   try {

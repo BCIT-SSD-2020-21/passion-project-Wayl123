@@ -1,0 +1,14 @@
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.notFinish {
+  background-color: #cc3723;
+}
+
+.finish {
+  background-color: #23cc31;
+}
