@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const token = localStorage.getItem('token')
-const authHeader = {Authorization: `Bearer ${token}`}
+// const token = localStorage.getItem('token')
+// const authHeader = {Authorization: `Bearer ${token}`}
 
 //POST /api/users
 export async function createUser({sendData, setToken}) {
@@ -31,8 +31,9 @@ export async function loginUser({sendData, setToken}) {
   }
 }
 
-export async function getProgress({user}) {
+export async function getProgress({user, token}) {
   try {
+    const authHeader = {Authorization: `Bearer ${token}`}
     const result = await axios.get(`/api/progress/${user._id}`, {headers: authHeader})
     return result.data.progress.progress
   } catch (error) {
@@ -40,11 +41,11 @@ export async function getProgress({user}) {
   }
 }
 
-export async function updateProgress({newProgress, user}) {
+export async function updateProgress({progress, user, token}) {
   try {
-    console.log(newProgress)
+    const authHeader = {Authorization: `Bearer ${token}`}
     const result = await axios.post(`/api/progress/${user._id}`, {
-      progress: newProgress
+      progress: progress
     }, {headers: authHeader})
   } catch (error) {
     console.log(error)

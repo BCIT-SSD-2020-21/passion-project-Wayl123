@@ -37,12 +37,17 @@ function App() {
 
   useEffect(async() => {
     if(user && token) {
+      console.log(token)
       const userProgress = await setDefaultUserProgress()
       if(userProgress) {
         setProgress(userProgress)
+        console.log("User Progress")
+      } else {
+        updateProgress({progress, user, token})
+        console.log(`Set to local progress: ${progress}`)
       }
     }
-  }, [user && token])
+  }, [user, token])
 
   const setDefaultProgress = () => {
     let newProgress = []
@@ -50,10 +55,11 @@ function App() {
       newProgress.push(false)
     }
     setProgress(newProgress)
+    console.log("Default Progress")
   }
 
   const setDefaultUserProgress = async() => {
-    const result = await getProgress({user})
+    const result = await getProgress({user, token})
     return(result)
   }
 
@@ -61,7 +67,9 @@ function App() {
     let newProgress = progress
     newProgress.splice(data.level-1, 1, true)
     setProgress([...newProgress])
-    updateProgress({newProgress, user})
+    if(user) {
+      updateProgress({progress: newProgress, user, token})
+    }
     console.log(newProgress)
   }
 

@@ -9,6 +9,7 @@ export default function P1HomePage({updateLocalProgress}) {
   const history = useHistory()
 
   const unlockClicked = () => {
+    updateLocalProgress({level: 2})
     history.push('/end')
   }
 
