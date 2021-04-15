@@ -9,6 +9,7 @@ module.exports = async function() {
   const db = client.db()
 
   const users = db.collection('users')
+  const progress = db.collection('progress')
 
   async function createUser({username, password}) {
     const encrypted = await bcrypt.hash(password, 12)
@@ -20,8 +21,7 @@ module.exports = async function() {
     }
     const result = await users.insertOne({
       username,
-      password: encrypted,
-      timestamp: Date.now()
+      password: encrypted
     })
 
     return result.ops[0]
@@ -43,8 +43,24 @@ module.exports = async function() {
     return user
   }
 
+  async function getProgress({userId}) {
+    return await progress
+      .findOne({userId: userId})
+  }
+  
+  async function createProgress({newProgress, userId}) {
+    const result = await progress.findOneAndUpdate(
+      {userId: userId}, //query
+      {$set: {...newProgress}}, //updateData
+      {upsert: true} //options
+    )
+    return result
+  }
+
   return {
     createUser,
-    getUser
+    getUser,
+    getProgress,
+    createProgress
   }
 }
