@@ -9,6 +9,8 @@ import {
 import jwtDecode from "jwt-decode"
 import useLocalStorage from "react-use-localstorage"
 
+import {getProgress, updateProgress} from "./network"
+
 import HeaderNavigation from "./layouts/HeaderNavigation"
 import LoginPage from "./layouts/LoginPage"
 import WelcomePage from "./layouts/WelcomePage"
@@ -21,7 +23,7 @@ function App() {
   const [user, setUser] = useState()
   const [progress, setProgress] = useState([])
 
-  const numOfLevel = 1
+  const numOfLevel = 2
 
   useEffect(() => {
     const user = token ? jwtDecode(token) : null
@@ -33,6 +35,12 @@ function App() {
     setDefaultProgress()
   }, [])
 
+  useEffect(async() => {
+    const userProgress = user ? await updateDefaultUserProgress() : null
+    console.log(userProgress)
+    // setProgress(userProgress)
+  }, [user])
+
   const setDefaultProgress = () => {
     let newProgress = []
     for(var i=progress.length; i<numOfLevel; i++) {
@@ -42,10 +50,17 @@ function App() {
     console.log(newProgress)
   }
 
+  const updateDefaultUserProgress = async() => {
+    const result = await getProgress({user})
+    console.log(result)
+    return(result)
+  }
+
   const updateLocalProgress = (data) => {
     let newProgress = progress
     newProgress.splice(data.level-1, 1, true)
     setProgress([...newProgress])
+    updateProgress({newProgress, user})
     console.log(newProgress)
   }
 

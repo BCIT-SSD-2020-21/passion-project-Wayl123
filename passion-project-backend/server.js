@@ -1,5 +1,6 @@
 const express = require('express')
 const makeUsersRouter = require('./routers/usersRouter')
+const makeProgressRouter = require('./routers/progressRouter')
 const jwt = require('./jwt')
 const mongoDatabase = require('./mongoDatabase')
 
@@ -10,6 +11,9 @@ mongoDatabase().then(database => {
   console.log(database)
   const usersRouter = makeUsersRouter({database, generateToken: jwt.generateToken})
   app.use('/api/users', usersRouter)
+
+  const progressRouter = makeProgressRouter({database, authorize: jwt.authorize})
+  app.use('/api/progress', progressRouter)
 })
 
 const port = process.env.port || 8080
