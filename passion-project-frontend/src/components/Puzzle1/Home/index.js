@@ -15,7 +15,7 @@ export default function Home({checkAnswer, code}) {
       <p>As you solve more cases you get access to more advance cases</p>
       <p>Your first task is to find the combination that is hidden in this page and enter it into the text box</p>
       <form onSubmit={handleSubmit}>
-        <input name="guess" type="text" placeholder="Enter Code and Press Enter" />
+        <input name="guess" type="text" placeholder="Enter Code" />
       </form>
       <p className={styles.code}>{code}</p>
     </div>
