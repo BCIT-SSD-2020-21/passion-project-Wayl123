@@ -74,6 +74,12 @@ function App() {
     console.log(newProgress)
   }
 
+  const PrivateRoute = ({path, children}) => (
+    <Route path={path}>
+      {!!token ? children : <Redirect to='/' />}
+    </Route>
+  )
+
   return (
     <Router>
       <HeaderNavigation setToken={setToken} user={user} />
@@ -81,9 +87,9 @@ function App() {
         <Route path="/login">
           <LoginPage setToken={setToken} />
         </Route>
-        <Route path="/profile">
+        <PrivateRoute path="/profile">
           <ProfilePage user={user} progress={progress} />
-        </Route>
+        </PrivateRoute>
         <Route path="/puzzle1">
           <P1HomePage updateLocalProgress={updateLocalProgress} />
         </Route>
